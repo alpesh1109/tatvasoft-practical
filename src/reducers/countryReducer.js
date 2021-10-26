@@ -4,7 +4,7 @@ const intialState = {
     country: []
 }
 
-export default (state = intialState, action) => {
+const countryReducer = (state = intialState, action) => {
     switch (action.type) {
         case types.GET_COUNTRY:
             return {
@@ -16,3 +16,4 @@ export default (state = intialState, action) => {
     }
 
 }
+export default countryReducer;

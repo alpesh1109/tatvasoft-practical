@@ -7,9 +7,10 @@ import { getCountry } from '../actions/countryAction'
 function Main(props) {
     const [val, setVal] = useState("");
     const search = () => {
-        props.getCountry(val);
-    }
+        props.getCountry(val,(res)=>{
 
+        });
+    }
     return (
         <SearchAppBar onChange={setVal} val={val} searchFun={search}>
 
@@ -20,6 +21,6 @@ Main.propTypes = {
     country: PropTypes.array.isRequired
 }
 const mapStateToProps = state => ({
-    country: state.country.countryData
+    country: state.country.countryData || []
 })
 export default connect(mapStateToProps, { getCountry })(Main);

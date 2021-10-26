@@ -6,7 +6,8 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import { Button } from 'reactstrap';
+import SearchIcon from '@mui/icons-material/Search';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -38,7 +39,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    //paddingLeft: `calc(1em + ${theme.spacing(2)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
@@ -51,8 +52,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar(props) {
-  const setVal= (e) => {
+  const setVal = (e) => {
     props.onChange(e.target.value)
+  }
+  const searchClick = () => {
+    props.searchFun()
   }
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -65,7 +69,7 @@ export default function SearchAppBar(props) {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            {/* <MenuIcon /> */}
+            <MenuIcon />
           </IconButton>
           <Typography
             variant="h6"
@@ -76,18 +80,16 @@ export default function SearchAppBar(props) {
             MUI
           </Typography>
           <Search>
-            <SearchIconWrapper>
-              {/* <SearchIcon /> */}
-            
-            </SearchIconWrapper>
+            <IconButton size="large" aria-label="search" color="inherit" onClick={() => searchClick()}>
+              <SearchIcon />
+            </IconButton>
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
-              onChange={(e)=>setVal(e)}
+              onChange={(e) => setVal(e)}
               value={props.val}
             />
           </Search>
-          <Button color="danger" onClick={props.searchFun}>Search</Button>
         </Toolbar>
       </AppBar>
     </Box>
